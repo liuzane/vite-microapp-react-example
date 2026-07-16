@@ -4,7 +4,7 @@
 
 ## 项目简介
 
-该应用是 [Vite Microapp React Demo](https://github.com/liuzane/vite-microapp-react-demo.git) 的微前端子应用之一，独立开发、部署，并通过 `micro-app` 框架被主应用加载。主要业务功能：
+该应用是 [Vite Microapp React Example](https://github.com/liuzane/vite-microapp-react-example.git) 的微前端子应用之一，独立开发、部署，并通过 `micro-app` 框架被主应用加载。主要业务功能：
 
 - 订单列表：展示订单数据，支持分页浏览
 - 产品列表：展示产品数据，支持分页浏览
@@ -36,7 +36,7 @@
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/liuzane/vite-microapp-react-demo.git
+git clone https://github.com/liuzane/vite-microapp-react-example.git
 cd app1
 
 # 2. 安装依赖
