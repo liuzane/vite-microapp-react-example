@@ -2,8 +2,8 @@
 import type { DatabaseMapper } from 'mockDB/mapper';
 import type { IUser, IUserSearchParams } from '@/models/user';
 
-// 常量
-const { DATABASE_NAME } = await import('shared/consts/db');
+// 数据库名称
+import { DATABASE_NAME } from 'shared/consts/db';
 
 export default class UserService {
   private userMapper: DatabaseMapper<IUser> | undefined;

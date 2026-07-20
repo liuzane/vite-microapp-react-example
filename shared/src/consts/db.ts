@@ -1,1 +1,1 @@
-export const DATABASE_NAME: string = 'vite_microapp_react_demo_db';
+export const DATABASE_NAME: string = 'vite-microapp-react-example-db';

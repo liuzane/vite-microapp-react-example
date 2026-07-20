@@ -1,5 +1,6 @@
 // 基础模块
 import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   Input,
   Select,
@@ -21,6 +22,9 @@ import {
   EyeOutlined,
 } from '@ant-design/icons';
 
+// 远程组件
+import { SharedTable, SharedPagination } from 'shared/components';
+
 // 枚举
 import { UserStatusEnum } from '@/enums/user.enum';
 
@@ -37,9 +41,6 @@ import type {
 // 数据服务
 import UserService from '@/services/UserService';
 
-// 远程组件
-const { SharedTable, SharedPagination } = await import('shared/components');
-
 const { Option } = Select;
 
 const STATUS_MAP: Record<UserStatusType, IStatusConfig> = {
@@ -51,6 +52,9 @@ const STATUS_MAP: Record<UserStatusType, IStatusConfig> = {
 const userService: UserService = new UserService();
 
 export default function User() {
+  // 路由参数
+  const [searchParams] = useSearchParams();
+
   // 状态管理
   const [dataSource, setDataSource] = useState<IUser[]>([]);
   const [total, setTotal] = useState<number>(0);
@@ -95,7 +99,14 @@ export default function User() {
 
   // 初始化及筛选条件变化时加载数据
   useEffect(() => {
-    loadData();
+    const name: string | null = searchParams.get('name');
+    console.log('name:', name);
+    if (name) {
+      setSearchText(name);
+      loadData({ searchText: name });
+    } else {
+      loadData();
+    }
   }, []);
 
   // 当删除操作后，若当前页无数据且不是第一页，则跳转到上一页

@@ -21,6 +21,9 @@ import {
   EyeOutlined,
 } from '@ant-design/icons';
 
+// 远程组件
+import { SharedTable, SharedPagination } from 'shared/components';
+
 // 枚举
 import { RoleStatusEnum } from '@/enums/role.enum';
 
@@ -36,10 +39,6 @@ import type {
 
 // 数据服务
 import RoleService from '@/services/RoleService';
-
-// 组件
-// import { SharedTable, SharedPagination } from 'shared/components';
-const { SharedTable, SharedPagination } = await import('shared/components');
 
 const { Option } = Select;
 

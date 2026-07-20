@@ -14,6 +14,7 @@ declare global {
   }
 
   interface MicroAppGlobalData {
+    from: string;
     [appName: string]: {
       path?: string;
       ready?: boolean;

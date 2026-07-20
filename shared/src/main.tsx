@@ -1,7 +1,7 @@
 // 基础模块
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import { StyleProvider } from '@ant-design/cssinjs';
 import zhCN from 'antd/locale/zh_CN';
@@ -16,11 +16,11 @@ import App from './App.tsx';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ConfigProvider locale={zhCN}>
-      <BrowserRouter basename={import.meta.env.VITE_BASE}>
+      <HashRouter basename={window.__MICRO_APP_BASE_ROUTE__ || '/'}>
         <StyleProvider layer>
           <App />
         </StyleProvider>
-      </BrowserRouter>
+      </HashRouter>
     </ConfigProvider>
   </StrictMode>,
 );

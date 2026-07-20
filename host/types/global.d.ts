@@ -5,10 +5,17 @@ declare global {
     microApp: any;
   }
 
+  interface MicroAppConfig {
+    name: string;
+    url: string;
+  }
+
   interface MicroAppGlobalData {
+    from: string;
     [appName: string]: {
       path?: string;
       ready?: boolean;
+      navigate?: string;
     };
   }
 }

@@ -9,6 +9,12 @@ import { Provider } from 'react-redux';
 // 样式
 import '@/styles';
 
+// 数据库名称
+import { DATABASE_NAME } from 'shared/consts/db';
+
+// 数据库模块
+import { initIndexedDB } from 'mockDB/init';
+
 // Redux
 import { store } from '@/store';
 import { setAppLoading } from '@/store/slices/appsLoadingSlice';
@@ -16,18 +22,12 @@ import { setAppLoading } from '@/store/slices/appsLoadingSlice';
 // 应用入口
 import App from './App.tsx';
 
-// 常量
-const { DATABASE_NAME } = await import('shared/consts/db');
-
-// 数据库模块
-const { initIndexedDB } = await import('mockDB/init');
-
 // 初始化 IndexedDB
 initIndexedDB(DATABASE_NAME).then(() => {
   // 启动 MicroApp
   microApp.start({
     'disableScopecss': true,
-    'router-mode': 'pure',
+    'router-mode': 'native',
     // 全局生命周期钩子
     'lifeCycles': {
       created(_e: CustomEvent, appName: string) {

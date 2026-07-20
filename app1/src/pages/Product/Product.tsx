@@ -1,5 +1,6 @@
 // 基础模块
 import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   Input,
   Select,
@@ -21,6 +22,9 @@ import {
   PlusOutlined,
 } from '@ant-design/icons';
 
+// 远程组件
+import { SharedTable, SharedPagination } from 'shared/components';
+
 // 枚举
 import { ProductStatusEnum, ProductCategoryEnum } from '@/enums/product.enum';
 
@@ -38,9 +42,6 @@ import type {
 
 // 数据服务
 import ProductService from '@/services/ProductService';
-
-// 远程组件
-const { SharedTable, SharedPagination } = await import('shared/components');
 
 const { Option } = Select;
 
@@ -63,6 +64,9 @@ const CATEGORY_MAP: Record<ProductCategoryType, string> = {
 const productService: ProductService = new ProductService();
 
 export default function Product() {
+  // 路由参数
+  const [searchParams] = useSearchParams();
+
   // 状态管理
   const [dataSource, setDataSource] = useState<IProduct[]>([]);
   const [total, setTotal] = useState<number>(0);
@@ -128,7 +132,13 @@ export default function Product() {
 
   // 初始化及筛选条件变化时加载数据
   useEffect(() => {
-    loadData();
+    const name: string | null = searchParams.get('name');
+    if (name) {
+      setSearchText(name);
+      loadData({ searchText: name });
+    } else {
+      loadData();
+    }
   }, []);
 
   // 当删除操作后，若当前页无数据且不是第一页，则跳转到上一页

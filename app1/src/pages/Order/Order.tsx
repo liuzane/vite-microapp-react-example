@@ -20,6 +20,9 @@ import {
   EyeOutlined,
 } from '@ant-design/icons';
 
+// 远程组件
+import { SharedTable, SharedPagination } from 'shared/components';
+
 // 枚举
 import { OrderStatusEnum } from '@/enums/order.enum';
 
@@ -37,11 +40,9 @@ import type {
 // 数据服务
 import OrderService from '@/services/OrderService';
 
-// 远程组件
-const { SharedTable, SharedPagination } = await import('shared/components');
-
 const { Option } = Select;
 
+// 订单状态映射
 const STATUS_MAP: Record<OrderStatusType, IStatusConfig> = {
   [OrderStatusEnum.Pending]: { text: '待支付', color: 'warning' },
   [OrderStatusEnum.Paid]: { text: '已支付', color: 'processing' },
@@ -131,6 +132,33 @@ export default function Order() {
       setCurrentPage(totalPages);
     }
   }, [total, pageSize, currentPage]);
+
+  /**
+   * 全局导航函数
+   * @param path 导航路径
+   */
+  const globalNavigate = (path: string) => {
+    window.microApp?.setGlobalData({
+      from: window.__MICRO_APP_NAME__,
+      [window.__MICRO_APP_NAME__]: {
+        navigate: path,
+      },
+    });
+  };
+
+  /**
+   * 查看商品详情
+   */
+  const onViewProduct = (record: IOrder): void => {
+    globalNavigate(`/${window.__MICRO_APP_NAME__}/product?name=${record.productName}`);
+  };
+
+  /**
+   * 查看客户详情
+   */
+  const onViewCustomer = (record: IOrder): void => {
+    globalNavigate(`/app2/user?name=${record.customerName}`);
+  };
 
   /**
    * 查看订单详情
@@ -259,16 +287,28 @@ export default function Order() {
       dataIndex: 'productName',
       key: 'productName',
       ellipsis: true,
+      render: (_value: string, record: IOrder) => (
+        <Button
+          type="link"
+          size="small"
+          onClick={() => onViewProduct(record)}
+        >
+          {record.productName}
+        </Button>
+      ),
     },
     {
       title: '客户信息',
       key: 'customerInfo',
-      width: 200,
+      width: 140,
       render: (_value: string, record: IOrder) => (
-        <div>
-          <div>{record.customerName}</div>
-          <div style={{ fontSize: '12px', color: '#999' }}>{record.phone}</div>
-        </div>
+        <Button
+          type="link"
+          size="small"
+          onClick={() => onViewCustomer(record)}
+        >
+          {record.customerName}
+        </Button>
       ),
     },
     {
@@ -293,7 +333,7 @@ export default function Order() {
       title: '下单时间',
       dataIndex: 'createTime',
       key: 'createTime',
-      width: 180,
+      width: 220,
       sorter: (a: IOrder, b: IOrder) => new Date(a.createTime).getTime() - new Date(b.createTime).getTime(),
     },
     {
