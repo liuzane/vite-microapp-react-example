@@ -42,7 +42,7 @@ function App() {
   return (
     <AppLayout>
       <Routes>
-        <Route path="/" element={<Navigate to={`/${AppNameEnum.App1}/`} />} />
+        <Route path="/" element={<Navigate to={`/${AppNameEnum.App1}/order`} />} />
         {
           microAppConfigs.map((config: MicroAppConfig) => (
             <Route

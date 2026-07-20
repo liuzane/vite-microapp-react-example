@@ -71,14 +71,16 @@ export function AppSider() {
     const pathname: string = location.pathname;
     const pathnamePieces: string[] = pathname.split('/');
     const appName: string = pathnamePieces[1];
-    const subPath: string = '/' + pathnamePieces.slice(2).join('/') + (location.search || '');
-    setOpenKeys([appName]);
-    setSelectedKeys([pathname]);
-    console.log(`${AppNameEnum.Host} 发送数据到 ${appName}: { path: ${subPath} }`);
-    microApp.setGlobalData({
-      from: AppNameEnum.Host,
-      [appName]: { path: subPath },
-    });
+    if (appName) {
+      const subPath: string = '/' + pathnamePieces.slice(2).join('/') + (location.search || '');
+      setOpenKeys([appName]);
+      setSelectedKeys([pathname]);
+      console.log(`${AppNameEnum.Host} 发送数据到 ${appName}: { path: ${subPath} }`);
+      microApp.setGlobalData({
+        from: AppNameEnum.Host,
+        [appName]: { path: subPath },
+      });
+    }
   }, [location.pathname]);
 
   /**
