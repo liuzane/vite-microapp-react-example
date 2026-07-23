@@ -2,7 +2,7 @@ declare global {
   interface Window {
     __MICRO_APP_NAME__: string;
     __MICRO_APP_BASE_ROUTE__: string;
-    microApp: any;
+    microApp: unknown;
   }
 
   type InputElementChangeEvent = React.ChangeEvent<HTMLInputElement, HTMLInputElement>;

@@ -7,7 +7,7 @@ import { defineConfig, globalIgnores } from 'eslint/config';
 import stylistic from '@stylistic/eslint-plugin';
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'public', '@mf-types']),
   {
     files: ['**/*.{js,jsx,ts,mts,tsx}'],
     extends: [

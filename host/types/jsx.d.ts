@@ -6,7 +6,7 @@ declare module 'react' {
       'micro-app': React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
-      > & any;
+      > & unknown;
     }
   }
 }
