@@ -1,10 +1,10 @@
 # 主应用 - Micro App Host
 
-基于 Vite + React + micro-app 构建的微前端主应用（基座应用），负责整体布局、菜单导航以及子应用的动态加载。菜单组件通过 Module Federation 从 `shared` 远程模块获取，实现菜单配置的统一管理。
+基于 Vite + React + MicroApp 构建的微前端主应用（基座应用），负责整体布局、菜单导航以及子应用的动态加载。菜单组件通过 Module Federation 从 `shared` 远程模块获取，实现菜单配置的统一管理。
 
 ## 项目简介
 
-本项目是 [Vite Microapp React Example](https://github.com/liuzane/vite-microapp-react-example) 的主应用，采用 `micro-app` 框架聚合多个独立子应用（如订单管理、用户管理等）。主要职责：
+本项目是 [Vite Microapp React Example](https://github.com/liuzane/vite-microapp-react-example) 的主应用，采用 MicroApp 框架聚合多个独立子应用（如订单管理、用户管理等）。主要职责：
 
 - 提供全局布局（顶部栏 / 侧边栏 / 内容区域）
 - 从 `shared` 远程模块加载动态菜单组件
@@ -21,15 +21,15 @@
 | React 19            | UI 框架                                                             |
 | React Router DOM v6 | 路由管理（主应用的路由与子应用路径映射）                               |
 | Ant Design 6        | 组件库，提供一致的 UI 组件集                                         |
-| micro-app           | 微前端框架，负责子应用的加载、卸载与通信                               |
+| MicroApp            | 微前端框架，负责子应用的加载、卸载与通信                               |
 | Module Federation   | 用于加载 `shared` 远程模块（菜单组件、全局配置）                      |
-| Ant Design / 自定义 | 布局与样式库（可根据实际情况替换）                                    |
+| Ant Design / 自定义  | 布局与样式库（可根据实际情况替换）                                    |
 
 ## 前置条件
 
 - Node.js >= 22
 - npm / yarn / pnpm 均可
-- 已了解 `micro-app` 基本概念
+- 已了解 MicroApp 基本概念
 - `shared` 远程模块需要提前启动（提供菜单组件及配置）
 - 子应用1（订单/产品）、子应用2（用户/角色）需能够独立访问
 
