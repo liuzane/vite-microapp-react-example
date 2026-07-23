@@ -52,7 +52,7 @@ export default class UserService {
 
     if (count === 0) {
       console.log('用户表为空，开始初始化...');
-      const { users } = await import('mockDB/data/users');
+      const { default: users } = await import('mockDB/data/users');
       await this.userMapper.insertBatch(users as IUser[]);
     }
   }
@@ -134,7 +134,7 @@ export default class UserService {
    */
   async reset(): Promise<void> {
     await this.getMapper();
-    const { users } = await import('mockDB/data/users');
+    const { default: users } = await import('mockDB/data/users');
     await this.userMapper!.clear();
     await this.userMapper!.insertBatch(users as IUser[]);
   }

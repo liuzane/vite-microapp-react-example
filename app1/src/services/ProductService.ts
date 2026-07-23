@@ -52,7 +52,7 @@ export default class ProductService {
 
     if (count === 0) {
       console.log('产品表为空，开始初始化...');
-      const { products } = await import('mockDB/data/products');
+      const { default: products } = await import('mockDB/data/products');
       await this.productMapper.insertBatch(products as IProduct[]);
     }
   }
@@ -136,7 +136,7 @@ export default class ProductService {
    */
   async reset(): Promise<void> {
     await this.getMapper();
-    const { products } = await import('mockDB/data/products');
+    const { default: products } = await import('mockDB/data/products');
     await this.productMapper!.clear();
     await this.productMapper!.insertBatch(products as IProduct[]);
   }

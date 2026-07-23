@@ -9,4 +9,5 @@ export interface Order {
     phone: string;
     address: string;
 }
-export declare const orders: Order[];
+declare const orders: Order[];
+export default orders;

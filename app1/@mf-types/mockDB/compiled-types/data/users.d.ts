@@ -9,4 +9,5 @@ export interface User {
     createTime: string;
     lastLoginTime: string;
 }
-export declare const users: User[];
+declare const users: User[];
+export default users;

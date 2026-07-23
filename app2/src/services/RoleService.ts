@@ -52,7 +52,7 @@ export default class RoleService {
 
     if (count === 0) {
       console.log('角色表为空，开始初始化...');
-      const { roles } = await import('mockDB/data/roles');
+      const { default: roles } = await import('mockDB/data/roles');
       await this.roleMapper.insertBatch(roles as IRole[]);
     }
   }
@@ -134,7 +134,7 @@ export default class RoleService {
    */
   async reset(): Promise<void> {
     await this.getMapper();
-    const { roles } = await import('mockDB/data/roles');
+    const { default: roles } = await import('mockDB/data/roles');
     await this.roleMapper!.clear();
     await this.roleMapper!.insertBatch(roles as IRole[]);
   }

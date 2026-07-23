@@ -7,4 +7,5 @@ export interface Role {
     createTime: string;
     description: string;
 }
-export declare const roles: Role[];
+declare const roles: Role[];
+export default roles;

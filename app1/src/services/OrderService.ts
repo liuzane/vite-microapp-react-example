@@ -52,7 +52,7 @@ export default class OrderService {
 
     if (count === 0) {
       console.log('订单表为空，开始初始化...');
-      const { orders } = await import('mockDB/data/orders');
+      const { default: orders } = await import('mockDB/data/orders');
       await this.orderMapper.insertBatch(orders as IOrder[]);
     }
   }
@@ -133,7 +133,7 @@ export default class OrderService {
    */
   async reset(): Promise<void> {
     await this.getMapper();
-    const { orders } = await import('mockDB/data/orders');
+    const { default: orders } = await import('mockDB/data/orders');
     await this.orderMapper!.clear();
     await this.orderMapper!.insertBatch(orders as IOrder[]);
   }

@@ -44,28 +44,28 @@ export function AppHeader() {
         const mapper: DatabaseMapper<unknown> = new DatabaseMapper<unknown>(DATABASE_NAME, storeName);
         switch (storeName) {
           case ORDER_STORE_NAME: {
-            const { orders } = await import('mockDB/data/orders');
+            const { default: orders } = await import('mockDB/data/orders');
             await mapper.clear();
             await mapper.insertBatch(orders);
             break;
           }
 
           case PRODUCT_STORE_NAME: {
-            const { products } = await import('mockDB/data/products');
+            const { default: products } = await import('mockDB/data/products');
             await mapper.clear();
             await mapper.insertBatch(products);
             break;
           }
 
           case USER_STORE_NAME: {
-            const { users } = await import('mockDB/data/users');
+            const { default: users } = await import('mockDB/data/users');
             await mapper.clear();
             await mapper.insertBatch(users);
             break;
           }
 
           case ROLE_STORE_NAME: {
-            const { roles } = await import('mockDB/data/roles');
+            const { default: roles } = await import('mockDB/data/roles');
             await mapper.clear();
             await mapper.insertBatch(roles);
             break;

@@ -11,4 +11,5 @@ export interface Product {
     createTime: string;
     description: string;
 }
-export declare const products: Product[];
+declare const products: Product[];
+export default products;
