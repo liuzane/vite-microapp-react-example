@@ -22,6 +22,7 @@
   "devDependencies": {
     "@babel/core": "^7.29.0",
     "@eslint/js": "^10.0.1",
+    "@micro-zoe/micro-app": "^1.0.0-rc.32",
     "@module-federation/vite": "^1.16.6",
     "@rolldown/plugin-babel": "^0.2.3",
     "@stylistic/eslint-plugin": "^5.10.0",

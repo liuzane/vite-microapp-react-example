@@ -1,12 +1,9 @@
-import type React from 'react';
+import type { MicroAppElement } from '@micro-zoe/micro-app';
 
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
-      'micro-app': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & unknown;
+      'micro-app': MicroAppElement;
     }
   }
 }

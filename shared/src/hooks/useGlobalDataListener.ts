@@ -34,7 +34,7 @@ export function useGlobalDataListener() {
   // 在 DOM 更新后、浏览器绘制前同步执行，确保监听尽早生效
   useLayoutEffect(() => {
     // 获取初始全局数据
-    const globalData: MicroAppGlobalData = window.microApp?.getGlobalData() || {};
+    const globalData: MicroAppGlobalData = window.microApp?.getGlobalData() as unknown as MicroAppGlobalData;
     console.log(`${MICRO_APP_NAME} 初始化参数:`, globalData);
 
     // 通知父应用当前子应用已准备就绪
